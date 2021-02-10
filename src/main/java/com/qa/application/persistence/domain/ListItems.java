@@ -1,17 +1,9 @@
 package com.qa.application.persistence.domain;
 
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import com.sun.istack.NotNull;
 
@@ -21,21 +13,31 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class ListName {
+public class ListItems {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	@NotNull
 	private String name;
-	
-	@OneToMany(mappedBy = "ListName", fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<ListItems> items;
+	@NotNull
+	private String description;
+	@NotNull
+	private boolean completed;
 
-	public ListName(@NotNull String name) {
+	public ListItems(Long id, String name, String description, boolean completed) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.completed = completed;
+	}
+
+	public ListItems(String name, String description, boolean completed) {
 		super();
 		this.name = name;
+		this.description = description;
+		this.completed = completed;
 	}
 
 }
