@@ -22,7 +22,7 @@ public class ListNameController {
 //	Create Method for Controller
 	@PostMapping("/create")
 	public ResponseEntity<ListNameDto> create(@RequestBody ListName ListName) {
-		ListName created = this.service.create(ListName);
+		ListNameDto created = this.service.create(ListName);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
 

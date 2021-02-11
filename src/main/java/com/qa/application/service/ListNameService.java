@@ -26,7 +26,10 @@ public class ListNameService {
 		this.mapper = mapper;
 	}
 	
-	
+	// Create method for Service
+		public ListNameDto create(ListName listName) {
+			return this.mapToDto(this.repo.save(listName));
+		}
 	
 	
 
