@@ -1,5 +1,7 @@
 package com.qa.application.service;
 
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,16 @@ public class ListNameService {
 			return this.mapToDto(this.repo.save(listName));
 		}
 	
+		// Read All
+		public List<ListNameDto> readAll() {
+			return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
+
+		}
+
+		// Read by Id
+		public ListNameDto readById(Long id) {
+			return this.mapToDto(this.repo.findById(id).orElseThrow(ListNameNotFoundException::new));
+		}	
 	
 
 }
