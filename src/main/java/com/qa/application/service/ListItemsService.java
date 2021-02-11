@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.qa.application.dto.ListItemsDto;
 import com.qa.application.persistence.domain.ListItems;
 import com.qa.application.persistence.repo.ListItemsRepo;
+import com.qa.application.utils.SpringBeanUtil;
 
 public class ListItemsService {
 
@@ -41,6 +42,14 @@ public class ListItemsService {
 	// Read by ID method for Service
 	public ListItemsDto readById(Long id) {
 		return this.mapToDto(this.repo.findById(id).orElseThrow());
+	}
+
+	// Update
+	public ListItemsDto update(ListItemsDto listItemsDto, Long id) {
+		ListItems toUpdate = this.repo.findById(id).orElseThrow();
+		toUpdate.setName(listItemsDto.getName());
+		SpringBeanUtil.mergeNotNull(listItemsDto, toUpdate);
+		return this.mapToDto(this.repo.save(toUpdate));
 	}
 
 }
