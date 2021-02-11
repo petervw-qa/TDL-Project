@@ -1,5 +1,8 @@
 package com.qa.application.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,6 +30,17 @@ public class ListItemsService {
 	// Create method for Service
 	public ListItemsDto create(ListItems listItems) {
 		return this.mapToDto(this.repo.save(listItems));
+	}
+
+	// Read All method for Service
+	public List<ListItemsDto> readllAll() {
+		return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
+
+	}
+
+	// Read by ID method for Service
+	public ListItemsDto readById(Long id) {
+		return this.mapToDto(this.repo.findById(id).orElseThrow());
 	}
 
 }
