@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.qa.application.dto.ListItemsDto;
@@ -41,6 +42,12 @@ public class ListItemsController {
 	@GetMapping("/read/{id}")
 	public ResponseEntity<ListItemsDto> readOne(@PathVariable Long id) {
 		return ResponseEntity.ok(this.service.readById(id));
+	}
+
+//	Update functionality for Controller
+	@PutMapping("/update/{id}")
+	public ResponseEntity<ListItemsDto> update(@PathVariable Long id, @RequestBody ListItemsDto listItemsDto) {
+		return new ResponseEntity<>(this.service.update(listItemsDto, id), HttpStatus.ACCEPTED);
 	}
 
 }
