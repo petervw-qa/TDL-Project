@@ -52,5 +52,11 @@ public class ListNameService {
 		SpringBeanUtil.mergeNotNull(listNameDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));
 	}
+	
+	// Delete method for Service
+		public boolean delete(Long id) {
+			this.repo.deleteById(id);
+			return !this.repo.existsById(id);
+		}
 
 }
