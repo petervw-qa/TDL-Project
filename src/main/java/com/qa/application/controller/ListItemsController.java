@@ -1,8 +1,12 @@
 package com.qa.application.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,6 +29,18 @@ public class ListItemsController {
 	public ResponseEntity<ListItemsDto> create(@RequestBody ListItems listItems) {
 		ListItemsDto created = this.service.create(listItems);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
+	}
+
+//	Read functionality for Controller
+	@GetMapping("/read")
+	public ResponseEntity<List<ListItemsDto>> readAll() {
+		return ResponseEntity.ok(this.service.readllAll());
+	}
+
+//	Read by ID functionality for Controller
+	@GetMapping("/read/{id}")
+	public ResponseEntity<ListItemsDto> readOne(@PathVariable Long id) {
+		return ResponseEntity.ok(this.service.readById(id));
 	}
 
 }
