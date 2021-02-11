@@ -44,12 +44,18 @@ public class ListItemsService {
 		return this.mapToDto(this.repo.findById(id).orElseThrow());
 	}
 
-	// Update
+	// Update method for Service
 	public ListItemsDto update(ListItemsDto listItemsDto, Long id) {
 		ListItems toUpdate = this.repo.findById(id).orElseThrow();
 		toUpdate.setName(listItemsDto.getName());
 		SpringBeanUtil.mergeNotNull(listItemsDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));
+	}
+
+	// Delete method for Service
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);//
+		return !this.repo.existsById(id);//
 	}
 
 }
