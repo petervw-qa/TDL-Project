@@ -31,7 +31,7 @@ public class ListName {
 	
 	@OneToMany(mappedBy = "listname", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<ListItems> items;
+	private List<ListItems> listItems;
 
 	public ListName(@NotNull String name) {
 		super();
