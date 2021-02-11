@@ -29,7 +29,7 @@ public class ListName {
 	@Column
 	private String name;
 	
-	@OneToMany(mappedBy = "ListName", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "listname", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<ListItems> items;
 
