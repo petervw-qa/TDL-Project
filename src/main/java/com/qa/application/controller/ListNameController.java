@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +26,8 @@ public class ListNameController {
 	
 //	Create Method for Controller
 	@PostMapping("/create")
-	public ResponseEntity<ListNameDto> create(@RequestBody ListName ListName) {
-		ListNameDto created = this.service.create(ListName);
+	public ResponseEntity<ListNameDto> create(@RequestBody ListName listName) {
+		ListNameDto created = this.service.create(listName);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
 	
@@ -40,6 +41,12 @@ public class ListNameController {
 	@GetMapping("/read/{id}")
 	public ResponseEntity<ListNameDto> readOne(@PathVariable Long id) {
 		return ResponseEntity.ok(this.service.readById(id));
+	}
+	
+//	Update method for Controller
+	@PutMapping("/update/{id}")
+	public ResponseEntity<ListNameDto> update(@PathVariable Long id, @RequestBody ListNameDto listName) {
+		return new ResponseEntity<>(this.service.update(listName, id), HttpStatus.ACCEPTED);
 	}
 
 }
