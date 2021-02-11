@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.application.dto.ListNameDto;
+import com.qa.application.exceptions.ListNameNotFoundException;
 import com.qa.application.persistence.domain.ListName;
 import com.qa.application.persistence.repo.ListNameRepo;
 import com.qa.application.utils.SpringBeanUtil;
