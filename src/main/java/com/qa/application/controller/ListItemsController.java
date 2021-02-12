@@ -42,7 +42,7 @@ public class ListItemsController {
 //	Read functionality for Controller
 	@GetMapping("/read")
 	public ResponseEntity<List<ListItemsDto>> readAll() {
-		return ResponseEntity.ok(this.service.readllAll());
+		return ResponseEntity.ok(this.service.readAll());
 	}
 
 //	Read by ID functionality for Controller

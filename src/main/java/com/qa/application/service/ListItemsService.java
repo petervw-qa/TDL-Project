@@ -36,7 +36,7 @@ public class ListItemsService {
 	}
 
 	// Read All method for Service
-	public List<ListItemsDto> readllAll() {
+	public List<ListItemsDto> readAll() {
 		return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
 
 	}
