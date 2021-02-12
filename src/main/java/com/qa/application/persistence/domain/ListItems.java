@@ -27,7 +27,7 @@ public class ListItems {
 	private boolean completed;
 	
 	@ManyToOne
-	private ListItems listItem = null;
+	private ListItems listitem = null;
 
 	public ListItems(Long id, String name, String description, boolean completed) {
 		super();

@@ -28,7 +28,7 @@ public class ListName {
 	@NotNull
 	private String name;
 
-	@OneToMany(mappedBy = "listItem", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "listitem", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<ListItems> items;
 
