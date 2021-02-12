@@ -61,7 +61,7 @@ public class ListNameController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ListNameDto> delete(@PathVariable Long id) {
 		return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-				: new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }
