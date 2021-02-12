@@ -2,6 +2,7 @@ package com.qa.application.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,13 @@ public class ListNameController {
 
 	private ListNameService service;
 
-//	Create Method for Controller
+	@Autowired
+	public ListNameController(ListNameService service) {
+		super();
+		this.service = service;
+	}
+
+	// Create Method for Controller
 	@PostMapping("/create")
 	public ResponseEntity<ListNameDto> create(@RequestBody ListName listName) {
 		ListNameDto created = this.service.create(listName);

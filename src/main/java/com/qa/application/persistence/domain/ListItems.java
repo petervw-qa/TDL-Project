@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.sun.istack.NotNull;
 
@@ -24,6 +25,9 @@ public class ListItems {
 	private String description;
 	@NotNull
 	private boolean completed;
+	
+	@ManyToOne
+	private ListItems listItem = null;
 
 	public ListItems(Long id, String name, String description, boolean completed) {
 		super();

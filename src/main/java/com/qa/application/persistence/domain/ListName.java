@@ -26,15 +26,21 @@ public class ListName {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	@NotNull
 	private String name;
-	
-	@OneToMany(mappedBy = "listname", fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "listItem", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<ListItems> listItems;
+	private List<ListItems> items;
 
 	public ListName(@NotNull String name) {
 		super();
+		this.name = name;
+	}
+
+	public ListName(Long id, @NotNull String name) {
+		super();
+		this.id = id;
 		this.name = name;
 	}
 
