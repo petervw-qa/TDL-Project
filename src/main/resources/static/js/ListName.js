@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const createListName = () => {
 	const listName = document.querySelector('#listname')
 	const body = {
