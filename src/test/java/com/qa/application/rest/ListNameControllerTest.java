@@ -1,10 +1,12 @@
 package com.qa.application.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -48,12 +50,19 @@ public class ListNameControllerTest {
 	
 	@Test
 	void readAllTEST() throws Exception {
-		
+		List<ListNameDto> nameDtos = listOfLists.stream().map(this::mapToDto).collect(Collectors.toList());
+		when(this.service.readAll()).thenReturn(nameDtos);
+		assertThat(this.controller.readAll()).isEqualTo(new ResponseEntity<>(nameDtos, HttpStatus.OK));
+		verify(this.service, atLeastOnce()).readAll();
 	}
 	
 	@Test
-	void readByIdTEST() throws Exception {
-		
+	void readOneTEST() throws Exception {
+		final Long id = 2L;
+		final ListNameDto listNameDto = null;
+		when(this.service.update(listNameDto, id)).thenReturn(this.mapToDto(List_2));
+		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_2), HttpStatus.OK)).isEqualTo(this.controller.readOne(id));
+		verify(this.service, atLeastOnce()).readById(id);
 	}
 	
 	@Test
