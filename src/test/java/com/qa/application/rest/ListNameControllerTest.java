@@ -67,7 +67,11 @@ public class ListNameControllerTest {
 	
 	@Test
 	void updateTEST() throws Exception {
-		
+		final Long id = 1L;
+		final ListNameDto listNameDto = null;
+		when(this.service.update(listNameDto, id)).thenReturn(this.mapToDto(List_1));
+		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.ACCEPTED)).isEqualTo(this.controller.update(id, listNameDto));
+		verify(this.service, atLeastOnce()).update(listNameDto, id);
 	}
 	
 	@Test
