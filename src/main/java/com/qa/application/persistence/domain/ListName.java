@@ -39,4 +39,10 @@ public class ListName {
 		this.name = name;
 	}
 
+	public ListName(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 }
