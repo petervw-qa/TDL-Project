@@ -39,21 +39,21 @@ public class ListNameControllerIntegrationTest {
 	private ModelMapper mapper;
 	@Autowired
 	private ObjectMapper jsonifier;
-	
+
 	private final String URI = "/listname";
 	private final ListName List_1 = new ListName("Peter's List");
 //	private final ListName List_2 = new ListName("Mason's List");
 //	private final ListName List_3 = new ListName("Artur's List");
-	private final ListItem Item_1 = new ListItem("Shopping","Go to tesco",false);
-	private final ListItem Item_2 = new ListItem("Build PC","Order new components",false);
-	private final ListItem Item_3 = new ListItem("Exercise","Chest day!",false);
+	private final ListItem Item_1 = new ListItem("Shopping", "Go to tesco", false);
+	private final ListItem Item_2 = new ListItem("Build PC", "Order new components", false);
+	private final ListItem Item_3 = new ListItem("Exercise", "Chest day!", false);
 //	private final List<ListName> listOfLists = List.of(List_1, List_2, List_3);
 	private final List<ListItem> listOfItems = List.of(Item_1, Item_2, Item_3);
-	
+
 	private ListNameDto mapToDto(ListName listName) {
 		return this.mapper.map(listName, ListNameDto.class);
 	}
-	
+
 	@Test
 	void createTEST() throws Exception {
 		ListNameDto ListName_Test = mapToDto(new ListName("Peter"));
@@ -65,30 +65,31 @@ public class ListNameControllerIntegrationTest {
 		ResultMatcher checkStatus = status().isCreated();
 		ResultMatcher checkBody = (ResultMatcher) content().json(testListNameSavedtoJSON);
 		this.mvc.perform(rB).andExpect(checkStatus).andExpect(checkBody);
-		
+
 	}
-	
+
 	@Test
 	void updateTEST() throws Exception {
 		// still figuring out, left while i continue with other tests
 	}
-	
+
 	@Test
 	void readAllTEST() throws Exception {
 		// still figuring out, left while i continue with other tests
 	}
-	
+
 	@Test
 	void readOneTEST() throws Exception {
 		List_1.setItems(listOfItems);
 		RequestBuilder rB = get(URI + "/read/" + List_1.getId()).accept(MediaType.APPLICATION_JSON);
 		ResultMatcher checkStatus = status().isOk();
-		this.mvc.perform(rB).andExpect(checkStatus).andExpect((ResultMatcher) content().json(this.jsonifier.writeValueAsString(this.mapToDto(List_1))));
+		this.mvc.perform(rB).andExpect(checkStatus)
+				.andExpect((ResultMatcher) content().json(this.jsonifier.writeValueAsString(this.mapToDto(List_1))));
 	}
-	
+
 	@Test
 	void deleteTEST() throws Exception {
 		this.mvc.perform(delete(URI + "/delete/" + List_1.getId())).andExpect(status().isGone());
 	}
-	
+
 }
