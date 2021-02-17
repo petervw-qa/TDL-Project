@@ -56,6 +56,7 @@ public class ListNameControllerTest {
 		verify(this.service, atLeastOnce()).readAll();
 	}
 	
+	// Needs a fix: expects 200 OK + details and only getting back 200 OK
 	@Test
 	void readOneTEST() throws Exception {
 		final Long id = 2L;
@@ -74,10 +75,14 @@ public class ListNameControllerTest {
 		verify(this.service, atLeastOnce()).update(listNameDto, id);
 	}
 	
+	
 	@Test
 	void deleteTEST() throws Exception {
-		
+		when(this.service.delete(List_2.getId())).thenReturn(false);
+		assertThat(this.controller.delete(List_2.getId())).isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+		verify(this.service, atLeastOnce()).delete(List_2.getId());
 	}
+	
 	
 	
 
