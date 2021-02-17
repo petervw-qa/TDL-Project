@@ -70,6 +70,7 @@ public class ListNameServiceTest {
 	}
 
 	@Test
+	// NullPointerException - needs checking, all other tests are fine
 	void updateTEST() throws Exception {
 		final Long id = 1L;
 		when(this.repo.findById(id)).thenReturn(Optional.of(List_1));
