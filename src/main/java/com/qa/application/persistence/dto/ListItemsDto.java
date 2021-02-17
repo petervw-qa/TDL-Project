@@ -1,4 +1,4 @@
-package com.qa.application.dto;
+package com.qa.application.persistence.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.application.dto.ListNameDto;
 import com.qa.application.persistence.domain.ListName;
+import com.qa.application.persistence.dto.ListNameDto;
 import com.qa.application.service.ListNameService;
 
 @RestController

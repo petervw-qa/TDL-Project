@@ -1,4 +1,4 @@
-package com.qa.application.dto;
+package com.qa.application.persistence.dto;
 
 import java.util.ArrayList;
 import java.util.List;

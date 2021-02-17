@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.application.dto.ListItemsDto;
 import com.qa.application.persistence.domain.ListItems;
+import com.qa.application.persistence.dto.ListItemsDto;
 import com.qa.application.persistence.repo.ListItemsRepo;
 import com.qa.application.utils.SpringBeanUtil;
 
