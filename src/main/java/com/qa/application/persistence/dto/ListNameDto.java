@@ -13,7 +13,7 @@ public class ListNameDto {
 	private Long id;
 	private String name;
 	
-	List<ListItemsDto> items = new ArrayList<>();
+	List<ListItemDto> items = new ArrayList<>();
 
 }
 

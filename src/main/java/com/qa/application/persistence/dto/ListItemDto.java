@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ListItemsDto {
+public class ListItemDto {
 	
 	private Long id;
 	private String name;

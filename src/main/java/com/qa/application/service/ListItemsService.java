@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.application.persistence.domain.ListItems;
-import com.qa.application.persistence.dto.ListItemsDto;
+import com.qa.application.persistence.domain.ListItem;
+import com.qa.application.persistence.dto.ListItemDto;
 import com.qa.application.persistence.repo.ListItemsRepo;
 import com.qa.application.utils.SpringBeanUtil;
 
@@ -19,8 +19,8 @@ public class ListItemsService {
 
 	private ModelMapper mapper;
 
-	private ListItemsDto mapToDto(ListItems listItems) {
-		return this.mapper.map(listItems, ListItemsDto.class);
+	private ListItemDto mapToDto(ListItem listItems) {
+		return this.mapper.map(listItems, ListItemDto.class);
 	}
 
 	@Autowired
@@ -31,24 +31,24 @@ public class ListItemsService {
 	}
 
 	// Create method for Service
-	public ListItemsDto create(ListItems listItems) {
+	public ListItemDto create(ListItem listItems) {
 		return this.mapToDto(this.repo.save(listItems));
 	}
 
 	// Read All method for Service
-	public List<ListItemsDto> readAll() {
+	public List<ListItemDto> readAll() {
 		return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
 
 	}
 
 	// Read by ID method for Service
-	public ListItemsDto readById(Long id) {
+	public ListItemDto readById(Long id) {
 		return this.mapToDto(this.repo.findById(id).orElseThrow());
 	}
 
 	// Update method for Service
-	public ListItemsDto update(ListItemsDto listItemsDto, Long id) {
-		ListItems toUpdate = this.repo.findById(id).orElseThrow();
+	public ListItemDto update(ListItemDto listItemsDto, Long id) {
+		ListItem toUpdate = this.repo.findById(id).orElseThrow();
 		toUpdate.setName(listItemsDto.getName());
 		SpringBeanUtil.mergeNotNull(listItemsDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));

@@ -24,66 +24,68 @@ import com.qa.application.service.ListNameService;
 
 @SpringBootTest
 public class ListNameControllerTest {
-	
-	@Autowired
+
+	@MockBean // Mock
+	ListNameService mockService;
+	@Autowired /// Inject mocks
 	ListNameController controller;
-	@Autowired
-	private ModelMapper mapper;
-	@MockBean
-	private ListNameService service;
-	
+	ModelMapper mapper;
+
 	private final ListName List_1 = new ListName("Peter's List");
 	private final ListName List_2 = new ListName("Mason's List");
 	private final List<ListName> listOfLists = List.of(List_1, List_2);
-	
-	
+
 	private ListNameDto mapToDto(ListName listName) {
 		return this.mapper.map(listName, ListNameDto.class);
 	}
-	
+
 	@Test
 	void createTEST() throws Exception {
-		when(this.service.create(List_1)).thenReturn(this.mapToDto(List_1));
-		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.CREATED)).isEqualTo(this.controller.create(List_1));
-		verify(this.service, Mockito.times(1)).create(List_1);
+		/// resources
+		/// rules
+		when(this.mockService.create(List_1)).thenReturn(this.mapToDto(List_1));
+		/// action
+		/// assertion
+		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.CREATED))
+				.isEqualTo(this.controller.create(List_1));
+		verify(this.mockService, Mockito.times(1)).create(List_1);
 	}
-	
+
 	@Test
 	void readAllTEST() throws Exception {
 		List<ListNameDto> nameDtos = listOfLists.stream().map(this::mapToDto).collect(Collectors.toList());
-		when(this.service.readAll()).thenReturn(nameDtos);
+		when(this.mockService.readAll()).thenReturn(nameDtos);
 		assertThat(this.controller.readAll()).isEqualTo(new ResponseEntity<>(nameDtos, HttpStatus.OK));
-		verify(this.service, atLeastOnce()).readAll();
+		verify(this.mockService, atLeastOnce()).readAll();
 	}
-	
+
 	// Needs a fix: expects 200 OK + details and only getting back 200 OK
 	@Test
 	void readOneTEST() throws Exception {
 		final Long id = 2L;
 		final ListNameDto listNameDto = null;
-		when(this.service.update(listNameDto, id)).thenReturn(this.mapToDto(List_2));
-		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_2), HttpStatus.OK)).isEqualTo(this.controller.readOne(id));
-		verify(this.service, atLeastOnce()).readById(id);
+		when(this.mockService.update(listNameDto, id)).thenReturn(this.mapToDto(List_2));
+		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_2), HttpStatus.OK))
+				.isEqualTo(this.controller.readOne(id));
+		verify(this.mockService, atLeastOnce()).readById(id);
 	}
-	
+
 	@Test
 	void updateTEST() throws Exception {
 		final Long id = 1L;
 		final ListNameDto listNameDto = null;
-		when(this.service.update(listNameDto, id)).thenReturn(this.mapToDto(List_1));
-		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.ACCEPTED)).isEqualTo(this.controller.update(id, listNameDto));
-		verify(this.service, atLeastOnce()).update(listNameDto, id);
+		when(this.mockService.update(listNameDto, id)).thenReturn(this.mapToDto(List_1));
+		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.ACCEPTED))
+				.isEqualTo(this.controller.update(id, listNameDto));
+		verify(this.mockService, atLeastOnce()).update(listNameDto, id);
 	}
-	
-	
+
 	@Test
 	void deleteTEST() throws Exception {
-		when(this.service.delete(List_2.getId())).thenReturn(false);
-		assertThat(this.controller.delete(List_2.getId())).isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
-		verify(this.service, atLeastOnce()).delete(List_2.getId());
+		when(this.mockService.delete(List_2.getId())).thenReturn(false);
+		assertThat(this.controller.delete(List_2.getId()))
+				.isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+		verify(this.mockService, atLeastOnce()).delete(List_2.getId());
 	}
-	
-	
-	
 
 }

@@ -14,10 +14,12 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class ListName {
@@ -28,18 +30,12 @@ public class ListName {
 	@NotNull
 	private String name;
 
-	@OneToMany(mappedBy = "listitem", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "listname", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<ListItems> items;
+	private List<ListItem> items;
 
 	public ListName(@NotNull String name) {
 		super();
-		this.name = name;
-	}
-
-	public ListName(Long id, @NotNull String name) {
-		super();
-		this.id = id;
 		this.name = name;
 	}
 

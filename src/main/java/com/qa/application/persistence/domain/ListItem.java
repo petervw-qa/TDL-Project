@@ -8,13 +8,15 @@ import javax.persistence.ManyToOne;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ListItems {
+public class ListItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +29,10 @@ public class ListItems {
 	private boolean completed;
 	
 	@ManyToOne
-	private ListItems listitem = null;
+	private ListName listname = null;
 
-	public ListItems(Long id, String name, String description, boolean completed) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.completed = completed;
-	}
 
-	public ListItems(String name, String description, boolean completed) {
+	public ListItem(String name, String description, boolean completed) {
 		super();
 		this.name = name;
 		this.description = description;
