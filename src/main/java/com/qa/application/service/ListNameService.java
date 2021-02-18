@@ -50,7 +50,7 @@ public class ListNameService {
 	// Update method for Service
 	public ListNameDto update(ListNameDto listNameDto, Long id) {
 		ListName toUpdate = this.repo.findById(id).orElseThrow(ListNameNotFoundException::new);
-		toUpdate.setName(listNameDto, toUpdate);
+		toUpdate.setName(listNameDto.getName());
 		SpringBeanUtil.mergeNotNull(listNameDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));
 	}
