@@ -58,22 +58,24 @@ const getAllListName = () => {
 
 const getByIDListName = () => {
 
-    let id = listNameID.value;
-    const params = new URLSearchParams(window.location.search);
-    console.log(params);
-    for (const param of params){
-        console.log(param);
-    }
-    console.log(`This list's ID is: ${id}`);
-    fetch(`http://localhost:9092/listname/read/${listNameID}`)
-    .then((response) => {
-        if(response.status !==200){
-            console.log(`There has been an error. It is: ${error}`);
-            return;
-        }
-        response.json()
-        .then((data) => console.log(data));
-    }) .catch((err) => console.error(`There has been an error. It is: ${err}`));
+	let id = listNameID.value;
+	
+	const params = new URLSearchParams(window.location.search);
+	
+	console.log(params);
+	for (const param of params) {
+		console.log(param);
+	}
+	console.log(`This list's ID is: ${id}`);
+	fetch(`http://localhost:9092/listname/read/${listNameID}`)
+		.then((response) => {
+			if (response.status !== 200) {
+				console.log(`There has been an error. It is: ${error}`);
+				return;
+			}
+			response.json()
+				.then((data) => console.log(data));
+		}).catch((err) => console.error(`There has been an error. It is: ${err}`));
 }
 
 
