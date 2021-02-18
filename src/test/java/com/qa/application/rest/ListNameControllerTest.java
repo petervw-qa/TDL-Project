@@ -1,7 +1,9 @@
 package com.qa.application.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -29,6 +31,7 @@ public class ListNameControllerTest {
 	ListNameService mockService;
 	@Autowired /// Inject mocks
 	ListNameController controller;
+	@Autowired
 	ModelMapper mapper;
 
 	private final ListName List_1 = new ListName("Peter's List");
@@ -41,13 +44,9 @@ public class ListNameControllerTest {
 
 	@Test
 	void createTEST() throws Exception {
-		/// resources
-		/// rules
 		when(this.mockService.create(List_1)).thenReturn(this.mapToDto(List_1));
-		/// action
-		/// assertion
 		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_1), HttpStatus.CREATED))
-				.isEqualTo(this.controller.create(List_1));
+		.isEqualTo(this.controller.create(List_1));
 		verify(this.mockService, Mockito.times(1)).create(List_1);
 	}
 
@@ -59,15 +58,15 @@ public class ListNameControllerTest {
 		verify(this.mockService, atLeastOnce()).readAll();
 	}
 
-	// Needs a fix: expects 200 OK + details and only getting back 200 OK
 	@Test
 	void readOneTEST() throws Exception {
 		final Long id = 2L;
-		final ListNameDto listNameDto = null;
-		when(this.mockService.update(listNameDto, id)).thenReturn(this.mapToDto(List_2));
-		assertThat(new ResponseEntity<ListNameDto>(this.mapToDto(List_2), HttpStatus.OK))
-				.isEqualTo(this.controller.readOne(id));
-		verify(this.mockService, atLeastOnce()).readById(id);
+		final ListNameDto listNameDto = this.mapToDto(List_2);
+		when(this.mockService.readById(id)).thenReturn(listNameDto);
+		ResponseEntity<ListNameDto> expected = ResponseEntity.ok(listNameDto);
+		ResponseEntity<ListNameDto> actual = this.controller.readOne(id);
+		assertEquals(expected,actual);
+		verify(this.mockService, times(1)).readById(id);
 	}
 
 	@Test
