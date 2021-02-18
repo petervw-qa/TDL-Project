@@ -1,16 +1,27 @@
 'use strict';
+const itemName = document.querySelector('#items-name')
+const itemDescription = document.querySelector('#items-description')
+const itemCompleted = document.querySelector('#items-completed')
+const itemListNameID = document.querySelector('#items-listname-Id')
+const listItemID = document.querySelector('#items-id')
+const newIName = document.querySelector('#item-new-name')
+const newIId = document.querySelector('#item-new-id')
+const newIDesc = document.querySelector('#item-new-desc')
+const newIComp = document.querySelector('#item-new-comp')
+const listItemDeleteID = document.querySelector('#listitems-delete')
 
-const createListItems = () => {
-	const listItemName = document.querySelector('#listitems-name')
-	const listItemDescription = document.querySelector('#listitems-description')
-	const listItemCompleted = document.querySelector('#listitems-completed')
-	const listItemListName = document.querySelector('#listitems-listname')
+const postListItems = () => {
+	const iName = itemName.value;
+	const iDescription = itemDescription.value;
+	const iCompleted = itemCompleted.value;
+	const itemToList = itemListNameID.value;
+
 	const body = {
-		"name": listItemName.value,
-		"description": listItemDescription.value,
-		"completed": listItemCompleted.value,
+		"name": iName.value,
+		"description": iDescription.value,
+		"completed": iCompleted.value,
 		"listname": {
-			"id": listItemListName.value
+			"id": itemToList.value
 		}
 	}
 	fetch("http://localhost:9092/listitems/create", {
@@ -31,57 +42,66 @@ const createListItems = () => {
 		.catch((error) => console.error(`There as been an error: ${error}`))
 };
 
-const readAllListItems = () => {
-	fetch("http://localhost:9092/listitems/read")
+const getAllListItems = () => {
+	fetch(`http://localhost:9092/listitems/read`)
 		.then((response) => {
-			(response.status !== 200) ? console.error(`There as been an error: ${response.status}`) :
-				response.json()
-					.then((data) => {
-						console.log(data)
-					})
-		}).catch((error) => console.error(`There as been an error: ${error}`))
-};
-
-const readByIDListItems = () => {
-	const listItemID = document.querySelector('#listitems-read-id').value
-	fetch(`http://localhost:9092/listitems/read/${listItemID}`)
-		.then((response) => {
-			(response.status !== 200) ? console.error(`There as been an error: ${response.status}`) :
-				response.json()
-					.then((data) => {
-						console.log(data)
-					})
-		}).catch((error) => console.error(`There as been an error: ${error}`))
-};
-
-const updateListItems = () => {
-	const listItemID = document.querySelector('#listitems-update-id').value
-	const listItemRename = document.querySelector('#listitems-rename')
-	const listItemNewDescription = document.querySelector('#listitems-new-description')
-	const listItemNewCompleted = document.querySelector('#listitems-new-completed')
-	const body = {
-		"name": listItemRename.value,
-		"description": listItemNewDescription.value,
-		"completed": listItemNewCompleted.value
-	}
-	fetch(`http://localhost:9092/listitems/update/${listItemID}`, {
-		method: "PUT",
-		headers: {
-			"Content-type": "application/json"
-		},
-		body: JSON.stringify(body)
-	}).then((response) => {
-		(response.status !== 202) ? console.error(`There as been an error: ${response.status}`) :
+			if (response.status !== 200) {
+				console.log(`There as been an error: ${response.status}`);
+				return;
+			}
 			response.json()
-				.then((data) => {
-					console.log(data)
-				})
-	}).catch((error) => console.error(`There as been an error: ${error}`))
-};
+				.then((data) => console.log(data));
+		}).catch((error) => console.error(`There as been an error: ${error}`));
+}
+
+const getByIDListItems = () => {
+	const iId = listItemID.value;
+	const params = new URLSearmchParams(window.location.search);
+	console.log(params);
+	for (const param of params) {
+		console.log(param);
+	}
+	console.log(`The ID for this item is: ${iId}`);
+	fetch(`http://localhost:9092/equipment/read/${iId}`)
+		.then((response) => {
+			if (response.status !== 200) {
+				console.log(`There as been an error: ${response.status}`);
+				return;
+			}
+			response.json()
+				.then((data) => console.log(data));
+		}).catch((error) => console.error(`There as been an error: ${error}`));
+}
+
+const putListItems = () => {
+	const updateItemName = newIName.value
+    const updateItemId = newIId.value;
+    const updateItemDescription = newIDesc.value;
+    const updateItemCompleted = newIComp.value;
+   
+    const body = { 
+		"name" : updateItemName,
+        "description" : updateItemDescription,
+        "completed" : updateItemCompleted,
+    }
+    console.log(body);
+
+    fetch(`http://localhost:9092/listitems/update/${updateItemId}`, {
+        method : `PUT`,
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(body)
+    })
+    .then((response) => response.json)
+    .then((data) => console.log(data))
+    .catch((err) => console.error(err));
+
+}
 
 const deleteListItems = () => {
-	const listItemID = document.querySelector('#listitems-delete')
-	fetch(`http://localhost:9092/listitems/delete/${listItemID}`, {
+	const itemDeleteID = listItemDeleteID.value;
+	fetch(`http://localhost:9092/listitems/delete/${itemDeleteID}`, {
 		method: "DELETE"
 	})
 		.then((response) => {
