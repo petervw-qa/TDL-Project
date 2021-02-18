@@ -27,13 +27,20 @@ public class ListItem {
 	private String description;
 	@NotNull
 	private boolean completed;
-	
+
 	@ManyToOne
 	private ListName listname = null;
 
-
 	public ListItem(String name, String description, boolean completed) {
 		super();
+		this.name = name;
+		this.description = description;
+		this.completed = completed;
+	}
+
+	public ListItem(Long id, String name, String description, boolean completed) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.completed = completed;
