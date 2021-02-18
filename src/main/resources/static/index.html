@@ -14,44 +14,215 @@
 <main>
 
 	<body>
+
+
 		<div class="container" style="margin-top: 30px;">
 			<header>
 				<h1>
 					<b>To Do List Application (Dark Mode)</b>
 				</h1>
 			</header>
-			<div class="row">
-				<div class="col">
-					<h3>
-						<u>Lists of things to do</u>
-					</h3>
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Create</button>
-					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Read</button>
-					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Update</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Delete</button>
-
-				</div>
-				<div class="col">
-					<h3>
-						<u>Items available</u>
-					</h3>
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Create</button>
-					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Read</button>
-					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Update</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="_"
-						data-bs-whatever="_">Delete</button>
-
-				</div>
-
-			</div>
 		</div>
+		<h3>Lists!</h3>
+		<h4><i>List Functionality: what do you want to do?</i></h5>
+			<br>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createListModal">Create
+				List</button>
+			<div id="createListModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title"><u>Create List</u></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p><b>What is the name of your List?</b></p>
+							<input type="Name" placeholder="Enter Here" id="listname-name">
+						</div>
+						<div class="modal-footer"></div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="postListName()">
+							Save Changes </button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#readListModal">Read
+				List(s)</button>
+			<div id="readListModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title"><u>Read Lists</u></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p><b>Enter List ID Number</b></p>
+							<input type="Name" placeholder="ID" id="listname-read-id">
+						</div>
+						<div class="modal-footer"></div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="getByIDListName()">
+							Show me specific list! </button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="getAllListName()">
+							Show me all lists! </button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateListModal">Update
+				List</button>
+			<div id="updateListModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title"><u>Update List!</u></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p><b>What is the ID of the list you want to update</b></p>
+							<input type="id" placeholder="ID" id="listname-update-id">
+							<input type="Name" placeholder="New List Name" id="listname-rename">
+						</div>
+						<div class="modal-footer"></div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="putListName()"> Save
+							Changes </button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteListModal">Delete
+				List</button>
+			<div id="deleteListModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title"><u>Delete List!</u></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p><b>What is the ID of the list you want to delete</b></p>
+							<input type="id" placeholder="ID" id="listname-delete-id">
+						</div>
+						<div class="modal-footer"></div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="deleteListName()">
+							Save
+							Changes </button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<h3>Items!</h3>
+			<h4><i>Item Functionality: what do you want to do?</i></h5>
+				<br>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createItemModal">Create
+					Item</button>
+				<div id="createItemModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><u>Create Item</u></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p><b>What's your item's details?</b></p>
+								<input type="Name" placeholder="Enter Name Here" id="items-name">
+								<input type="Description" placeholder="Enter Desc Here" id="items-description">
+								<input type="Completed" placeholder="True or False?" id="items-completed">
+								<input type="List" placeholder="Enter List ID" id="items-listname-Id">
+							</div>
+							<div class="modal-footer"></div>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal"
+								onclick="postListItems()">
+								Save Changes </button>
+						</div>
+					</div>
+				</div>
+				</div>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#readItemModal">Read
+					Item(s)</button>
+				<div id="readItemModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><u>Read Items</u></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p><b>Enter Item ID Number</b></p>
+								<input type="Name" placeholder="ID" id="items-id">
+							</div>
+							<div class="modal-footer"></div>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal"
+								onclick="getByIDListItems()">
+								Show me the item by ID! </button>
+							<button type="button" class="btn btn-success" data-dismiss="modal"
+								onclick="getAllListItems()">
+								Show me all items! </button>
+						</div>
+					</div>
+				</div>
+				</div>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateItemModal">Update
+					Item</button>
+				<div id="updateItemModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><u>Update Item!</u></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p><b>Update the items details!</b></p>
+								<input type="id" placeholder="Item ID Number" id="item-new-id">
+								<input type="newName" placeholder="New item name" id="item-new-name">
+								<input type="newDesc" placeholder="New description" id="item-new-desc">
+								<input type="newComp" placeholder="True or False?" id="item-new-comp">
+							</div>
+							<div class="modal-footer"></div>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal" onclick="putListItems()">
+								Save
+								Changes </button>
+						</div>
+					</div>
+				</div>
+				</div>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteItemModal">Delete
+					Item</button>
+				<div id="deleteItemModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><u>Delete Item!</u></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p><b>What is the ID of the item you want to delete</b></p>
+								<input type="id" placeholder="ID" id="listitems-delete">
+							</div>
+							<div class="modal-footer"></div>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success" data-dismiss="modal"
+								onclick="deleteListItems()"> Save
+								Changes </button>
+						</div>
+					</div>
+				</div>
+				</div>
 </main>
 <script src="./js/bootstrap.bundle.js"></script>
 <script src="./js/ListItems.js"></script>

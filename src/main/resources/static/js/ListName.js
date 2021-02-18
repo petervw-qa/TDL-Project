@@ -22,8 +22,10 @@ const postListName = () => {
 
 	const lName = listNameName.value;
 
+	console.log(lName);
+
 	const body = {
-		"name": lName.value
+		"name": lName
 	}
 	console.log(body)
 	fetch("http://localhost:9092/listname/create", {
@@ -61,7 +63,7 @@ const getByIDListName = () => {
 	let id = listNameID.value;
 	
 	const params = new URLSearchParams(window.location.search);
-	
+
 	console.log(params);
 	for (const param of params) {
 		console.log(param);
@@ -85,7 +87,7 @@ const putListName = () => {
 	const nName = listNameRename.value
 
 	const body = {
-		"name": nName.value
+		"name": nName
 	}
 	fetch(`http://localhost:9092/listname/update/${nID}`, {
 		method: "PUT",

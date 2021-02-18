@@ -17,11 +17,11 @@ const postListItems = () => {
 	const itemToList = itemListNameID.value;
 
 	const body = {
-		"name": iName.value,
-		"description": iDescription.value,
-		"completed": iCompleted.value,
+		"name": iName,
+		"description": iDescription,
+		"completed": iCompleted,
 		"listname": {
-			"id": itemToList.value
+			"id": itemToList
 		}
 	}
 	fetch("http://localhost:9092/listitems/create", {
