@@ -1,9 +1,9 @@
 package com.qa.application.rest;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -41,9 +41,9 @@ public class ListNameControllerIntegrationTest {
 	private ObjectMapper jsonifier;
 
 	private final String URI = "/listname";
-	private final ListName List_1 = new ListName("Peter's List");
-//	private final ListName List_2 = new ListName("Mason's List");
-//	private final ListName List_3 = new ListName("Artur's List");
+	private final ListName List_1 = new ListName("Peters List");
+//	private final ListName List_2 = new ListName("Masons List");
+//	private final ListName List_3 = new ListName("Arturs List");
 	private final ListItem Item_1 = new ListItem("Shopping", "Go to tesco", false);
 	private final ListItem Item_2 = new ListItem("Build PC", "Order new components", false);
 	private final ListItem Item_3 = new ListItem("Exercise", "Chest day!", false);
@@ -63,7 +63,7 @@ public class ListNameControllerIntegrationTest {
 		String testListNameSavedtoJSON = this.jsonifier.writeValueAsString(ListName_Test_Saved);
 		RequestBuilder rB = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testListNameToJSON);
 		ResultMatcher checkStatus = status().isCreated();
-		ResultMatcher checkBody = (ResultMatcher) content().json(testListNameSavedtoJSON);
+		ResultMatcher checkBody = content().json(testListNameSavedtoJSON);
 		this.mvc.perform(rB).andExpect(checkStatus).andExpect(checkBody);
 
 	}
@@ -84,7 +84,7 @@ public class ListNameControllerIntegrationTest {
 		RequestBuilder rB = get(URI + "/read/" + List_1.getId()).accept(MediaType.APPLICATION_JSON);
 		ResultMatcher checkStatus = status().isOk();
 		this.mvc.perform(rB).andExpect(checkStatus)
-				.andExpect((ResultMatcher) content().json(this.jsonifier.writeValueAsString(this.mapToDto(List_1))));
+				.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDto(List_1))));
 	}
 
 	@Test

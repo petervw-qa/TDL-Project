@@ -28,8 +28,8 @@ public class ListNameServiceTest {
 	private ListNameService service;
 	@MockBean
 	private ListNameRepo repo;
-	@MockBean
-	private ModelMapper mockMapper;
+	@Autowired
+	private ModelMapper mapper;
 
 	private final ListName List_1 = new ListName("Peter's List");
 	private final ListName List_2 = new ListName("Artur's List");
@@ -38,7 +38,7 @@ public class ListNameServiceTest {
 	private final List<ListName> listOfLists = List.of(List_1, List_2);
 
 	private ListNameDto mapToDto(ListName listName) {
-		return this.mockMapper.map(listName, ListNameDto.class);
+		return this.mapper.map(listName, ListNameDto.class);
 	}
 
 	@Test
