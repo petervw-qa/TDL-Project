@@ -31,34 +31,27 @@ public class ListNameService {
 		this.mapper = mapper;
 	}
 
-	// Create method for Service
 	public ListNameDto create(ListName listName) {
 		return this.mapToDto(this.repo.save(listName));
 	}
 
-	// Read All method for Service
 	public List<ListNameDto> readAll() {
 		return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
-
 	}
 
-	// Read by ID method for Service
 	public ListNameDto readById(Long id) {
 		return this.mapToDto(this.repo.findById(id).orElseThrow(ListNameNotFoundException::new));
 	}
 
-	// Update method for Service
 	public ListNameDto update(ListNameDto listNameDto, Long id) {
 		ListName toUpdate = this.repo.findById(id).orElseThrow(ListNameNotFoundException::new);
-		toUpdate.setName(listNameDto.getName());
 		SpringBeanUtil.mergeNotNull(listNameDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));
 	}
-	
-	// Delete method for Service
-		public boolean delete(Long id) {
-			this.repo.deleteById(id);
-			return !this.repo.existsById(id);
-		}
+
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
 
 }
