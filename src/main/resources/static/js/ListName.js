@@ -69,7 +69,7 @@ const getByIDListName = () => {
 		console.log(param);
 	}
 	console.log(`This list's ID is: ${id}`);
-	fetch(`http://localhost:9092/listname/read/${listNameID}`)
+	fetch(`http://localhost:9092/listname/read/${id}`)
 		.then((response) => {
 			if (response.status !== 200) {
 				console.log(`There has been an error. It is: ${error}`);
@@ -110,7 +110,7 @@ const deleteListName = () => {
 		method: "DELETE"
 	})
 		.then((response) => {
-			(response.status !== 204) ? console.error(`There as been an error: ${response.status}`) :
+			(response.status !== 410) ? console.error(`There as been an error: ${response.status}`) :
 				console.log("Successfully deleted!")
 		}).catch((err) => console.log(err));
 };

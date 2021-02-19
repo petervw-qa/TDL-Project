@@ -24,7 +24,7 @@ const postListItems = () => {
 			"id": itemToList
 		}
 	}
-	fetch("http://localhost:9092/listitems/create", {
+	fetch("http://localhost:9092/listitem/create", {
 		method: "POST",
 		headers: {
 			"Content-type": "application/json"
@@ -43,7 +43,7 @@ const postListItems = () => {
 };
 
 const getAllListItems = () => {
-	fetch(`http://localhost:9092/listitems/read`)
+	fetch(`http://localhost:9092/listitem/read`)
 		.then((response) => {
 			if (response.status !== 200) {
 				console.log(`There as been an error: ${response.status}`);
@@ -56,13 +56,13 @@ const getAllListItems = () => {
 
 const getByIDListItems = () => {
 	const iId = listItemID.value;
-	const params = new URLSearmchParams(window.location.search);
+	const params = new URLSearchParams(window.location.search);
 	console.log(params);
 	for (const param of params) {
 		console.log(param);
 	}
 	console.log(`The ID for this item is: ${iId}`);
-	fetch(`http://localhost:9092/equipment/read/${iId}`)
+	fetch(`http://localhost:9092/listitem/read/${iId}`)
 		.then((response) => {
 			if (response.status !== 200) {
 				console.log(`There as been an error: ${response.status}`);
@@ -86,7 +86,7 @@ const putListItems = () => {
     }
     console.log(body);
 
-    fetch(`http://localhost:9092/listitems/update/${updateItemId}`, {
+    fetch(`http://localhost:9092/listitem/update/${updateItemId}`, {
         method : `PUT`,
         headers : {
             "Content-Type" : "application/json"
@@ -101,11 +101,11 @@ const putListItems = () => {
 
 const deleteListItems = () => {
 	const itemDeleteID = listItemDeleteID.value;
-	fetch(`http://localhost:9092/listitems/delete/${itemDeleteID}`, {
+	fetch(`http://localhost:9092/listitem/delete/${itemDeleteID}`, {
 		method: "DELETE"
 	})
 		.then((response) => {
-			(response.status !== 204) ? console.error(`Status is ${response.status}`) :
+			(response.status !== 410) ? console.error(`Status is ${response.status}`) :
 				console.log("The item has been successfully deleted!")
 		})
 };
