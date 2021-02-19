@@ -64,7 +64,7 @@ public class ListItemControllerTest {
 		final ListItemDto listItemDto = this.mapToDto(Item_2);
 		when(this.mockService.readById(id)).thenReturn(listItemDto);
 		ResponseEntity<ListItemDto> expected = ResponseEntity.ok(listItemDto);
-		ResponseEntity<ListItemDto> actual = this.controller.readOne(id);
+		ResponseEntity<ListItemDto> actual = this.controller.readById(id);
 		assertEquals(expected,actual);
 		verify(this.mockService, times(1)).readById(id);
 	}
