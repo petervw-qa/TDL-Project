@@ -19,18 +19,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.qa.application.controller.ListItemsController;
+import com.qa.application.controller.ListItemController;
 import com.qa.application.persistence.domain.ListItem;
 import com.qa.application.persistence.dto.ListItemDto;
 import com.qa.application.service.ListItemService;
 
 @SpringBootTest
-public class ListItemsControllerTest {
+public class ListItemControllerTest {
 	
 	@MockBean // Mock
 	ListItemService mockService;
 	@Autowired /// Inject mocks
-	ListItemsController controller;
+	ListItemController controller;
 	@Autowired
 	ModelMapper mapper;
 	

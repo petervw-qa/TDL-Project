@@ -21,47 +21,43 @@ import com.qa.application.service.ListItemService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/listitems")
-public class ListItemsController {
+@RequestMapping("/listitem")
+public class ListItemController {
 
 	private ListItemService service;
 
 	@Autowired
-	public ListItemsController(ListItemService service) {
+	public ListItemController(ListItemService service) {
 		super();
 		this.service = service;
 	}
 
-//	Create functionality for Controller
 	@PostMapping("/create")
-	public ResponseEntity<ListItemDto> create(@RequestBody ListItem listItems) {
-		ListItemDto created = this.service.create(listItems);
+	public ResponseEntity<ListItemDto> create(@RequestBody ListItem listItem) {
+		ListItemDto created = this.service.create(listItem);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
-
-//	Read functionality for Controller
+	
 	@GetMapping("/read")
 	public ResponseEntity<List<ListItemDto>> readAll() {
 		return ResponseEntity.ok(this.service.readAll());
 	}
 
-//	Read by ID functionality for Controller
 	@GetMapping("/read/{id}")
-	public ResponseEntity<ListItemDto> readOne(@PathVariable Long id) {
+	public ResponseEntity<ListItemDto> readById(@PathVariable Long id) {
 		return ResponseEntity.ok(this.service.readById(id));
 	}
 
-//	Update functionality for Controller
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ListItemDto> update(@PathVariable Long id, @RequestBody ListItemDto listItemsDto) {
-		return new ResponseEntity<>(this.service.update(listItemsDto, id), HttpStatus.ACCEPTED);
+	public ResponseEntity<ListItemDto> update(@PathVariable Long id, @RequestBody ListItemDto listItemDto) {
+		return new ResponseEntity<>(this.service.update(listItemDto, id), (HttpStatus.ACCEPTED));
 	}
 
-//	Delete functionality for controller
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ListItemDto> delete(@PathVariable Long id) {
-		return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+		return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.GONE)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
 
 }

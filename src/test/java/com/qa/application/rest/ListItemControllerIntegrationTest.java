@@ -28,7 +28,7 @@ import com.qa.application.persistence.dto.ListItemDto;
 @ActiveProfiles("dev")
 @Sql(scripts = { "classpath:application-schema.sql",
 		"classpath:application-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-public class ListItemsControllerIntegrationTest {
+public class ListItemControllerIntegrationTest {
 
 	@Autowired
 	private MockMvc mvc;
