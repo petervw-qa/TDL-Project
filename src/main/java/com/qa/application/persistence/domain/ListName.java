@@ -1,5 +1,6 @@
 package com.qa.application.persistence.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -32,16 +33,17 @@ public class ListName {
 
 	@OneToMany(mappedBy = "listname", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<ListItem> items;
+	private List<ListItem> items = new ArrayList<>();;
 
-	public ListName(@NotNull String name) {
-		super();
-		this.name = name;
-	}
 
-	public ListName(Long id, String name) {
+	public ListName(Long id, @NotNull String name) {
 		super();
 		this.id = id;
+		this.name = name;
+	}
+	
+	public ListName(@NotNull String name) {
+		super();
 		this.name = name;
 	}
 
