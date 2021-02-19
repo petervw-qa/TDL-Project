@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.application.persistence.domain.ListItem;
 import com.qa.application.persistence.dto.ListItemDto;
-import com.qa.application.service.ListItemsService;
+import com.qa.application.service.ListItemService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/listitems")
 public class ListItemsController {
 
-	private ListItemsService service;
+	private ListItemService service;
 
 	@Autowired
-	public ListItemsController(ListItemsService service) {
+	public ListItemsController(ListItemService service) {
 		super();
 		this.service = service;
 	}

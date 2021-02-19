@@ -18,16 +18,16 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.application.persistence.domain.ListItem;
 import com.qa.application.persistence.dto.ListItemDto;
-import com.qa.application.persistence.repo.ListItemsRepo;
+import com.qa.application.persistence.repo.ListItemRepo;
 
 @SpringBootTest
 @ActiveProfiles("dev")
-public class ListItemsServiceTest {
+public class ListItemServiceTest {
 	
 	@Autowired
-	private ListItemsService service;
+	private ListItemService service;
 	@MockBean
-	private ListItemsRepo repo;
+	private ListItemRepo repo;
 	@MockBean
 	private ModelMapper mockMapper;
 	

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.qa.application.persistence.domain.ListItem;
 
 @Repository
-public interface ListItemsRepo extends JpaRepository<ListItem, Long>{
+public interface ListItemRepo extends JpaRepository<ListItem, Long>{
 
 }

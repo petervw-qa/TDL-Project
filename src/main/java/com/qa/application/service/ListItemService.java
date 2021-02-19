@@ -7,15 +7,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qa.application.exceptions.ListItemNotFoundException;
 import com.qa.application.persistence.domain.ListItem;
 import com.qa.application.persistence.dto.ListItemDto;
-import com.qa.application.persistence.repo.ListItemsRepo;
+import com.qa.application.persistence.repo.ListItemRepo;
 import com.qa.application.utils.SpringBeanUtil;
 
 @Service
-public class ListItemsService {
+public class ListItemService {
 
-	private ListItemsRepo repo;
+	private ListItemRepo repo;
 
 	private ModelMapper mapper;
 
@@ -24,40 +25,33 @@ public class ListItemsService {
 	}
 
 	@Autowired
-	public ListItemsService(ListItemsRepo repo, ModelMapper mapper) {
+	public ListItemService(ListItemRepo repo, ModelMapper mapper) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
 	}
 
-	// Create method for Service
-	public ListItemDto create(ListItem listItems) {
-		return this.mapToDto(this.repo.save(listItems));
+	public ListItemDto create(ListItem listItem) {
+		return this.mapToDto(this.repo.save(listItem));
 	}
 
-	// Read All method for Service
 	public List<ListItemDto> readAll() {
 		return this.repo.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
-
 	}
 
-	// Read by ID method for Service
 	public ListItemDto readById(Long id) {
-		return this.mapToDto(this.repo.findById(id).orElseThrow());
+		return this.mapToDto(this.repo.findById(id).orElseThrow(ListItemNotFoundException::new));
 	}
 
-	// Update method for Service
-	public ListItemDto update(ListItemDto listItemsDto, Long id) {
-		ListItem toUpdate = this.repo.findById(id).orElseThrow();
-		toUpdate.setName(listItemsDto.getName());
-		SpringBeanUtil.mergeNotNull(listItemsDto, toUpdate);
+	public ListItemDto update(ListItemDto listItemDto, Long id) {
+		ListItem toUpdate = this.repo.findById(id).orElseThrow(ListItemNotFoundException::new);
+		SpringBeanUtil.mergeNotNull(listItemDto, toUpdate);
 		return this.mapToDto(this.repo.save(toUpdate));
 	}
 
-	// Delete method for Service
 	public boolean delete(Long id) {
-		this.repo.deleteById(id);//
-		return !this.repo.existsById(id);//
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 
 }

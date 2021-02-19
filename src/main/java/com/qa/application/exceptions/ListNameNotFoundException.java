@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class ListNameNotFoundException extends EntityNotFoundException {
 
-	private static final long serialVersionUID = -614280390103731099L;
+	private static final long serialVersionUID = -595780099725851137L;
 
 }

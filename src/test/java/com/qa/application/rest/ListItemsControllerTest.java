@@ -22,13 +22,13 @@ import org.springframework.http.ResponseEntity;
 import com.qa.application.controller.ListItemsController;
 import com.qa.application.persistence.domain.ListItem;
 import com.qa.application.persistence.dto.ListItemDto;
-import com.qa.application.service.ListItemsService;
+import com.qa.application.service.ListItemService;
 
 @SpringBootTest
 public class ListItemsControllerTest {
 	
 	@MockBean // Mock
-	ListItemsService mockService;
+	ListItemService mockService;
 	@Autowired /// Inject mocks
 	ListItemsController controller;
 	@Autowired
