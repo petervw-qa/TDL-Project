@@ -5,8 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,14 +30,14 @@ public class ListItem {
 	@ManyToOne
 	private ListName listname = null;
 
-	public ListItem(String name, String description, boolean completed) {
+	public ListItem(@NotNull String name, @NotNull String description, @NotNull boolean completed) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.completed = completed;
 	}
 
-	public ListItem(Long id, String name, String description, boolean completed) {
+	public ListItem(Long id, @NotNull String name, @NotNull String description, @NotNull boolean completed) {
 		super();
 		this.id = id;
 		this.name = name;
