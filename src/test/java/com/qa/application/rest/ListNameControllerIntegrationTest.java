@@ -41,19 +41,22 @@ public class ListNameControllerIntegrationTest {
 	private ObjectMapper jsonifier;
 
 	private final String URI = "/listname";
-	private final ListName List_1 = new ListName("Peters List");
-//	private final ListName List_2 = new ListName("Masons List");
-//	private final ListName List_3 = new ListName("Arturs List");
-	private final ListItem Item_1 = new ListItem("Shopping", "Go to tesco", false);
-	private final ListItem Item_2 = new ListItem("Build PC", "Order new components", false);
-	private final ListItem Item_3 = new ListItem("Exercise", "Chest day!", false);
-//	private final List<ListName> listOfLists = List.of(List_1, List_2, List_3);
+	private final ListName List_1 = new ListName(1L, "Monday");
+	private final ListName List_2 = new ListName(2L, "Tuesday");
+	private final ListName List_3 = new ListName(3L, "Wednesday");
+	
+	private final ListItem Item_1 = new ListItem(1L, "Shopping", "Groceries", true);
+	private final ListItem Item_2 = new ListItem(2L, "Exercise", "Push", true);
+	private final ListItem Item_3 = new ListItem(3L, "Cook", "Chicken", true);
+	
+	@SuppressWarnings("unused")
+	private final List<ListName> listOfLists = List.of(List_1, List_2, List_3);
 	private final List<ListItem> listOfItems = List.of(Item_1, Item_2, Item_3);
 
 	private ListNameDto mapToDto(ListName listName) {
 		return this.mapper.map(listName, ListNameDto.class);
 	}
-
+	
 	@Test
 	void createTEST() throws Exception {
 		ListNameDto ListName_Test = mapToDto(new ListName("Peter"));
@@ -79,8 +82,9 @@ public class ListNameControllerIntegrationTest {
 	}
 
 	@Test
-	void readOneTEST() throws Exception {
+	void readByIdTEST() throws Exception {
 		List_1.setItems(listOfItems);
+
 		RequestBuilder rB = get(URI + "/read/" + List_1.getId()).accept(MediaType.APPLICATION_JSON);
 		ResultMatcher checkStatus = status().isOk();
 		this.mvc.perform(rB).andExpect(checkStatus)
