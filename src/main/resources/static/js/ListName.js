@@ -6,6 +6,15 @@ const listNameRename = document.querySelector('#listname-rename')
 const listNameUpdateId = document.querySelector('#listname-update-id')
 const listNameDeleteId = document.querySelector('#listname-delete-id')
 
+const successList = document.querySelector(".listTitle")
+
+const createListSuccess = () => {
+	const popUp = document.createElement("p");
+	const text = document.createTextNode("List Successfully Created!")
+	popUp.appendChild(text);
+	successList.appendChild(popUp);
+}
+
 const newList = () => {
 	const list = document.createElement("li");
 	const e = document.getElementById("listNameList").value;
@@ -38,6 +47,7 @@ const postListName = () => {
 		.then((response) => {
 			(response.status !== 201) ? console.error(`There as been an error: ${response.status}`) :
 				response.json()
+				.then(createListSuccess())
 					.then((data) => {
 						console.log(data)
 						console.log(`The item has been successfully added to the database!`)

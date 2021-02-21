@@ -1,6 +1,13 @@
 h3{
     text-align: center;
     text-shadow: 1px;
+    color: bisque;
+}
+
+h5{
+    text-align: center;
+    text-shadow: 1px;
+    color: bisque;
 }
 
 h1{
@@ -22,6 +29,10 @@ button{
 
 body{
     background-color: black;
+}
+
+p{
+    color: rgb(73, 158, 39);
 }
 
 

@@ -1,6 +1,7 @@
 package sitetests;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -14,16 +15,25 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 //
 //import com.qa.application.ToDoListApplication;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = ToDoListApplication.class)
 //@Sql(scripts = { "classpath:application-schema.sql", "classpath:application-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 //@ActiveProfiles("test")
 public class SiteItemTests {
 	
 	private static RemoteWebDriver driver;
+	private static ExtentReports report;
+	private static ExtentTest test;
 	private WebElement targ;
 
 	@BeforeAll
 	public static void setup() {
+		
+		report = new ExtentReports("C:\\Users\\P\\Documents\\spring-workspace\\TDL-Project\\target\\reports\\extent-reports\\extentReport-ListItem.html", true);
+		
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chrome/chromedriver.exe");
 		driver = new ChromeDriver();
 	}
@@ -31,10 +41,19 @@ public class SiteItemTests {
 	@AfterAll
 	public static void cleanup() {
 		driver.quit();
+		report.flush();
+		report.close();
 	}
-
+	
+	@AfterEach
+	public void afterEachTest() {
+		report.endTest(test);
+	}
 	@Test
 	public void testCreateItem() throws InterruptedException {
+		test = report.startTest("Test for Create Item");
+		test.log(LogStatus.INFO, "Item Created");
+		
 		driver.get("http://127.0.0.1:5500/src/main/resources/static/index.html");
 		targ = driver.findElement(By.xpath("/html/body/main/button[5]")); // target modal
 		targ.click(); // open modal
@@ -57,6 +76,9 @@ public class SiteItemTests {
 	
 	@Test
 	public void testReadItem() throws InterruptedException {
+		test = report.startTest("Test for Item List");
+		test.log(LogStatus.INFO, "Item Read");
+		
 		driver.get("http://127.0.0.1:5500/src/main/resources/static/index.html");
 		targ = driver.findElement(By.xpath("/html/body/main/button[6]")); // target modal
 		targ.click(); // open modal
@@ -68,6 +90,9 @@ public class SiteItemTests {
 	
 	@Test
 	public void testUpdateItem() throws InterruptedException {
+		test = report.startTest("Test for Update Item");
+		test.log(LogStatus.INFO, "Item Updated");
+		
 		driver.get("http://127.0.0.1:5500/src/main/resources/static/index.html");
 		targ = driver.findElement(By.xpath("/html/body/main/button[7]")); // target modal
 		targ.click(); // open modal
@@ -90,6 +115,9 @@ public class SiteItemTests {
 	
 	@Test
 	public void testDeleteItem() throws InterruptedException {
+		test = report.startTest("Test for Delete Item");
+		test.log(LogStatus.INFO, "Item Deleted");
+		
 		driver.get("http://127.0.0.1:5500/src/main/resources/static/index.html");
 		targ = driver.findElement(By.xpath("/html/body/main/button[8]")); // target modal
 		targ.click();
