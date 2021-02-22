@@ -35,13 +35,20 @@ java -jar ToDoList-Application-0.0.1-SNAPSHOT.war
 
 In order to run the tests on your own system, you must either fork and clone the repository down to your own local space or clone it using the git clone command and the root URL for this repository: 
 
+```
 git clone https://github.com/petervw-qa/TDL-Project
+```
+
+Then you will be able to navigate to your local repository on your command line interface and run test with your installed maven build tool.
+```
+mvn test
+```
 
 ### Unit Tests 
 
-These are the tests that I created in order to test and figure out how the classes in the packages.domain package were interacting with one another, their getters and setters and how the create, update, read and delete functions worked in each data access object.
+These are the tests that I created in order to test and figure out how the classes in the packages.domain package were interacting with one another, their getters and setters and how the create, update, read and delete functions worked in each data access object. Through the use of unit tests, I was able to test most lines written except.
 
-Examples of Unit Testing done for both Entity Service classes:
+### Examples of Unit Testing done for both Entity Service classes:
 
 ```
 
@@ -84,8 +91,10 @@ Examples of Unit Testing done for both Entity Service classes:
 	}
 
 ```
+### Integration Tests
+The integration tests I created were to test the create, read, update and delete functionality in the entity controllers and their relationship with their respective servers.
 
-Examples of Integration Testing done for both Entity Controller classes:
+### Examples of Integration Testing done for both Entity Controller classes:
 
 ```
 	@Test
@@ -116,8 +125,10 @@ Examples of Integration Testing done for both Entity Controller classes:
 	}
 
 ```
+### Acceptance Tests
+The acceptance tests I had written were used to test the User Story requirements I made with my Jira (Scrum) project management board that is linked to this remote repository. These acceptance tests test all CRUD functionality on the webpage as well as navigation between buttons and modals on the page.
 
-Examples of Acceptance Testing using Selenium for the frontend html webpage:
+### Examples of Acceptance Testing using Selenium for the frontend html webpage:
 
 ```
 
@@ -166,12 +177,11 @@ Examples of Acceptance Testing using Selenium for the frontend html webpage:
 ```
   
 
-
 ## Deployment
 
-If you want to deploy this project with an actual database, you will need to have your MySQL database working and currently running. 
+If you want to deploy this project with an actual database, you will need to have your MySQL database working and currently running, however, you will not have to manually create your local SQL database. 
 
-If you have changed your username and password from admin and root respectively, you will either need to use your bespoke details or reinstall to reset the username and password. When you have then logged in, run mySQL on your cmd and set up your databases and tables using the following commands tailored to this project:
+If you would like to do it manually: When you have then logged in, run mySQL on your cmd and set up your databases and tables using the following commands tailored to this project (if you have changed your username and password from admin and root respectively, you will either need to use your bespoke details or reinstall to reset the username and password):
 
 ```
 
@@ -193,7 +203,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-Peter Vaughan-Williams
+- Peter Vaughan-Williams - _Project_ - [Peter V-W](https://github.com/petervw-qa/)
 
 ## License
 
@@ -201,6 +211,6 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thank you to Vin (https://github.com/vineshghela) for all the help I had received during the production of this project!
-* A large thank you and lots of love to Gie, Peprah, and Arsalan for their help throughout the project for all of the motivational and technical help during the development of this project (big love to everyone else who gave me a helping hand!)
-* Finally, a large thank you to the creators of https://httpstatusdogs.com/ for making HTTP Status Codes fun to read and follow along during the project :) kept a smile on my face through frustrating times. 
+* Thank you to Vin (https://github.com/vineshghela) for all the help I had received during the production of this project.
+* A large thank you to Gie, Peprah, and Arsalan for their help throughout the project for all of the motivational and technical help during the development of this project.
+* Finally, a large thank you to the creators of https://httpstatusdogs.com/ for making HTTP Status Codes fun to read and follow along during the project. 
