@@ -1,5 +1,5 @@
-### Practical Project: To Do List Application
-# Coverage: 84.6%
+# Practical Project: To Do List Application
+ Coverage: 84.6%
 
 Description: A To Do List Application with a front-end written in HTML, CSS and JavaScript as well as a back-end written in Java making use of the SpringBoot framework.
 
