@@ -202,5 +202,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Thank you to Vin (https://github.com/vineshghela) for all the help I had received during the production of this project!
-* A large thank you and lots of love to Gie, Peprah, and Arsalan for their help throughout the project for all of the motivational and technical help during the development of this IMS (big love to everyone else who gave me a helping hand!)
+* A large thank you and lots of love to Gie, Peprah, and Arsalan for their help throughout the project for all of the motivational and technical help during the development of this project (big love to everyone else who gave me a helping hand!)
 * Finally, a large thank you to the creators of https://httpstatusdogs.com/ for making HTTP Status Codes fun to read and follow along during the project :) kept a smile on my face through frustrating times. 
