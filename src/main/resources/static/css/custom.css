@@ -1,0 +1,39 @@
+h3{
+    text-align: center;
+    text-shadow: 1px;
+    color: bisque;
+}
+
+h5{
+    text-align: center;
+    text-shadow: 1px;
+    color: bisque;
+}
+
+h1{
+    text-align: center;
+    color: blanchedalmond
+}
+
+.col{
+    background-color: cornsilk;
+    padding: 5px;
+    margin: 5px;
+    border: 5px;
+    border-radius: 5px;
+}
+
+button{
+    align-content: center;
+}
+
+body{
+    background-color: black;
+}
+
+p{
+    color: rgb(73, 158, 39);
+}
+
+
+
