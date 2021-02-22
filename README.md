@@ -1,7 +1,9 @@
 # Practical Project: To Do List Application
  Coverage: 84.6%
 
-Description: A To Do List Application with a front-end written in HTML, CSS and JavaScript as well as a back-end written in Java making use of the SpringBoot framework.
+## Description
+A To Do List Application with a front-end written in HTML, CSS and JavaScript as well as a back-end written in Java making use of the SpringBoot framework.
+This is an OOP-based web application, with utilisation of supporting tools, methodologies, and technologies, that encapsulates all fundamental and practical modules covered during training with QA.
 
 ## Getting Started
 
