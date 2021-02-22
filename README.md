@@ -1,5 +1,5 @@
-# Practical Project: To Do List Application
-Coverage: 84.6%
+### Practical Project: To Do List Application
+# Coverage: 84.6%
 
 Description: A To Do List Application with a front-end written in HTML, CSS and JavaScript as well as a back-end written in Java making use of the SpringBoot framework.
 
@@ -28,8 +28,9 @@ In order to use this application, you will need:
 You need to have the above installed.
 
 Once you have the java -jar ToDoList-Application-0.0.1-SNAPSHOT file downloaded onto your system, you can execute it through your command line (cmd) or any terminal that can run executables (like Windows PowerShell for example) by running the following command:
-
+```
 java -jar ToDoList-Application-0.0.1-SNAPSHOT.war
+```
 
 ## Running the tests
 
